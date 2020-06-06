@@ -1,0 +1,82 @@
+{
+  "name": "@logicallyabstract/simple-test-runner",
+  "version": "0.0.1",
+  "description": "Run unit tests in the browser",
+  "main": "dist/runner.js",
+  "bin": {
+    "simple-test-runner": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "run-s clean build:ts",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "format": "run-s format:eslint format:prettier",
+    "format:eslint": "eslint --fix --ext .js,.ts ./",
+    "format:prettier": "prettier --write .",
+    "lint": "run-s lint:eslint lint:prettier typecheck",
+    "lint:eslint": "eslint --ext .js,.ts ./",
+    "lint:prettier": "prettier -c .",
+    "open:coverage": "open coverage/lcov-report/index.html",
+    "start": "ts-node src/cli.ts integration/fixtures/**/*.test.ts",
+    "start:debug": "ts-node src/cli.ts integration/fixtures/**/*.test.ts --debug",
+    "test": "jest src",
+    "test:coverage": "jest --coverage --no-cache src",
+    "test:watch": "jest --watch src",
+    "test:integration": "ts-node integration/integration-test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logicallyabstract/simple-test-runner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/logicallyabstract/simple-test-runner/issues"
+  },
+  "homepage": "https://github.com/logicallyabstract/simple-test-runner#readme",
+  "dependencies": {
+    "@logicallyabstract/register-wc": "0.0.1",
+    "@logicallyabstract/simple-dev-server": "^0.3.0",
+    "chalk": "^4.0.0",
+    "escape-html": "^1.0.3",
+    "glob": "^7.1.6",
+    "koa": "^2.12.0",
+    "playwright": "^1.0.2",
+    "uuid": "^8.1.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/escape-html": "^1.0.0",
+    "@types/glob": "^7.1.2",
+    "@types/jest": "^25.2.3",
+    "@types/koa": "^2.11.3",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.11",
+    "@types/sinon": "^9.0.4",
+    "@types/uuid": "^8.0.0",
+    "@types/yargs": "^15.0.5",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^7.2.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1",
+    "mocha": "^8.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.2",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "peerDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "sinon": "^9.0.2"
+  },
+  "files": [
+    "dist"
+  ]
+}

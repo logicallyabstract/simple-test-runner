@@ -1,0 +1,6 @@
+node_modules
+*.config.js
+*.conf.js
+*rc.js
+dist
+coverage
