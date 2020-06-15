@@ -3,7 +3,7 @@ name: Continuous package deploy for testing
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
