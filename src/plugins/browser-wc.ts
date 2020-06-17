@@ -195,6 +195,12 @@ export class BrowserPlugin {
 
   testPath = '/_test/test.html';
 
+  excludedPaths = [
+    'node_modules/mocha',
+    'node_modules/chai',
+    'node_modules/sinon',
+  ];
+
   suiteCount?: number;
 
   frameIndex: string[] = [];

@@ -49,7 +49,7 @@ export class TestRunner {
       return `/${path.replace('.ts', '.js')}`;
     });
 
-    const app = createSimpleDevServerApp();
+    const app = createSimpleDevServerApp(this.plugin.excludedPaths);
 
     let suiteCount = paths.length;
 
