@@ -1,11 +1,12 @@
 {
   "name": "@logicallyabstract/simple-test-runner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Run unit tests in the browser",
   "main": "dist/runner.js",
   "bin": {
     "simple-test-runner": "dist/cli.js"
   },
+  "license": "MIT",
   "scripts": {
     "build": "run-s clean build:ts",
     "build:ts": "tsc -p tsconfig.build.json",
@@ -35,7 +36,7 @@
   "homepage": "https://github.com/logicallyabstract/simple-test-runner#readme",
   "dependencies": {
     "@logicallyabstract/register-wc": "0.0.1",
-    "@logicallyabstract/simple-dev-server": "^0.3.0",
+    "@logicallyabstract/simple-dev-server": "^0.4.0",
     "chalk": "^4.0.0",
     "escape-html": "^1.0.3",
     "glob": "^7.1.6",
