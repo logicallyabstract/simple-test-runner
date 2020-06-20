@@ -1,6 +1,6 @@
 {
   "name": "@logicallyabstract/simple-test-runner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Run unit tests in the browser",
   "main": "dist/runner.js",
   "bin": {
@@ -39,7 +39,7 @@
   "homepage": "https://github.com/logicallyabstract/simple-test-runner#readme",
   "dependencies": {
     "@logicallyabstract/register-wc": "^0.1.0",
-    "@logicallyabstract/simple-dev-server": "^0.5.0",
+    "@logicallyabstract/simple-dev-server": "^0.5.1",
     "chalk": "^4.0.0",
     "escape-html": "^1.0.3",
     "glob": "^7.1.6",

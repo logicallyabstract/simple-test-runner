@@ -3,7 +3,7 @@ name: Commit CI
 on:
   push:
     branches:
-      - '*'
+      - '**/*'
       - '!main'
 
 jobs:
