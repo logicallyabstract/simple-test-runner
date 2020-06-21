@@ -67,7 +67,7 @@ describe('runner', () => {
     expect(chromium.launch).toHaveBeenCalledTimes(1);
     expect(fakeBrowser.newContext).toHaveBeenCalledTimes(1);
     expect(fakeContext.newPage).toHaveBeenCalledTimes(1);
-    expect(fakePage.exposeFunction).toHaveBeenCalledTimes(7);
+    expect(fakePage.exposeFunction).toHaveBeenCalledTimes(8);
     expect(fakePage.goto).toHaveBeenCalledTimes(1);
   });
 

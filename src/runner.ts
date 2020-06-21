@@ -64,6 +64,7 @@ export class TestRunner {
       if (ctx.path === this.plugin.testPath) {
         ctx.body = this.plugin.constructTestHtml(jsPaths);
         ctx.status = 200;
+        ctx.type = 'text/html';
       }
     });
 
@@ -139,6 +140,10 @@ export class TestRunner {
         this.plugin.onSuiteEnd(name, event);
       },
     );
+
+    await page.exposeFunction(this.plugin.fnNames.onReset, () => {
+      this.plugin.onReset();
+    });
 
     await page.goto(`http://localhost:9099${this.plugin.testPath}`);
   }

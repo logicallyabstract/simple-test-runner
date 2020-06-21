@@ -37,11 +37,10 @@ const createFrame = (path: string) => {
   <script src="/node_modules/sinon/pkg/sinon.js"></script>
   <script>
     mocha.setup('bdd');
+    mocha.checkLeaks();
   </script>
   ${testScript(path)}
   <script type="module">
-    mocha.checkLeaks();
-
     const runner = mocha.run();
 
     const mapSuite = ({ delayed, pending, root, suites, tests, title }) => {
@@ -116,10 +115,18 @@ const testHtml = (paths: string[] = []) => {
   <style>
     iframe {
       display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 1000px;
     }
   </style>
 </head>
 <body>
+  <script>
+    if (window.test_onReset) {
+      window.test_onReset();
+    }
+  </script>
   ${frames.join('')}
 </body>
 </html>`;
@@ -198,6 +205,7 @@ export class BrowserPlugin {
     onPending: 'test_onPending',
     onSuiteStart: 'test_onSuiteStart',
     onSuiteEnd: 'test_onSuiteEnd',
+    onReset: 'test_onReset',
   };
 
   testPath = '/_test/test.html';
@@ -208,8 +216,6 @@ export class BrowserPlugin {
     'node_modules/sinon',
   ];
 
-  suiteCount?: number;
-
   frameIndex: string[] = [];
 
   constructTestHtml(paths: string[] = []): string {
@@ -218,7 +224,7 @@ export class BrowserPlugin {
 
   onStart(_name: string, _event: any) {
     this.frameIndex.push(_name);
-    log(chalk.blue(`Starting iframe suite ${this.suiteCount}...\n`));
+    log(chalk.blue(`Starting iframe suite ${this.frameIndex.length}...\n`));
   }
 
   onEnd(_name: string, _event: any): any[] {
@@ -240,5 +246,10 @@ export class BrowserPlugin {
       const errors = logSuiteAndFindErrors(event);
       this.errors.push(...errors);
     }
+  }
+
+  onReset() {
+    this.errors = [];
+    this.frameIndex = [];
   }
 }
