@@ -5,14 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* global sinon */
-
 import { createException, removeException } from './register';
 
-// @ts-ignore
-const { expect } = (window as any).chai;
-// @ts-ignore
-const { resetHistory } = sinon;
+const { expect } = chai;
+const { resetHistory } = window.sinon;
 
 describe('testing element mocking', () => {
   class ElementA extends HTMLElement {
@@ -23,9 +19,12 @@ describe('testing element mocking', () => {
 
   let div: HTMLDivElement;
 
-  before(() => {
+  before(async () => {
     customElements.define('element-a', ElementA);
     createException('element-a');
+
+    // import the element to be tested here to prevent a memory leak error from mocha
+    await import('./element-b');
   });
 
   after(() => {
@@ -37,8 +36,7 @@ describe('testing element mocking', () => {
     document.body.removeChild(div);
   });
 
-  it('should not render the inner html for element a', async () => {
-    await import('./element-b');
+  it('should not render the inner html for element a', () => {
     div = document.createElement('div');
     div.innerHTML = '<element-b></element-b>';
     document.body.appendChild(div);
